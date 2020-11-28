@@ -30,11 +30,9 @@ Citizen.CreateThread(function()
 		local andreiSleep = 1000
 		for k,v in pairs(locais) do
 			local ped = PlayerPedId()
-			local x,y,z = table.unpack(GetEntityCoords(ped))
-			local bowz,cdz = GetGroundZFor_3dCoord(v.x,v.y,v.z)
-			local distance = GetDistanceBetweenCoords(v.x,v.y,cdz,x,y,z,true)
-            if distance <= 2 then
-                andreiSleep = 5                
+			local x,y,z = GetEntityCoords(ped)
+            if Vdist(v.x,v.y,v.z,x,y,z) <= 2.0 then
+                andreiSleep = 10                
 				drawTxt("PRESSIONE  ~b~E~w~  PARA USAR O ARSENAL ",4,0.5,0.93,0.50,255,255,255,180)
 				DrawMarker(3, 1853.48,3687.81,34.27-0.9701,0,0,0,0,0,0,1.0,0.7,1.0,50,150,50,200,1,0,0,1)
 				DrawMarker(3, 851.53741455078,2167.9020996094,52.280456542969-0.9701,0,0,0,0,0,0,1.0,0.7,1.0,50,150,50,200,1,0,0,1)
@@ -45,7 +43,8 @@ Citizen.CreateThread(function()
 				DrawMarker(3, 1109.5931396484,-2008.220703125,31.050106048584-0.9701,0,0,0,0,0,0,1.0,0.7,1.0,50,150,50,200,1,0,0,1)
 				
 				if IsControlJustPressed(0,38) and andrei.checkPermissao then
-                    LVserver.abrir()
+					LVserver.abrir()
+					sleep = 5
 				end
 			end
         end
